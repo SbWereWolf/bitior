@@ -8,9 +8,14 @@ namespace Palindrome
         static void Main()
         {
             var input = Console.ReadLine();
-            var chars = input?.ToCharArray();
 
-            var isValid = chars != null;
+            var chars = new char[0];
+            var isValid = !string.IsNullOrWhiteSpace(input);
+            if (isValid)
+            {
+                // ReSharper disable once PossibleNullReferenceException
+                chars = input.ToCharArray();
+            }
             var isProper = false;
             if (isValid)
             {
@@ -23,7 +28,7 @@ namespace Palindrome
             }
             if (isValid && !isProper)
             {
-                for (int amount = 0; amount < chars.Length; amount++)
+                for (var amount = 1; amount < chars.Length; amount++)
                 {
                     var part = input.Substring(0,amount);
                     Array.Reverse(part.ToCharArray());
@@ -40,7 +45,7 @@ namespace Palindrome
 
             if (isValid && isProper)
             {
-                Console.WriteLine($@"{input}=> {candidate}");
+                Console.WriteLine($@"{input} => {candidate}");
             }
             if (!isValid)
             {
