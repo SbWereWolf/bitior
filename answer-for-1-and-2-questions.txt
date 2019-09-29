@@ -1,0 +1,59 @@
+Question 1
+
+Imagine that someone has already developed a program in C#, .NET Core that accepts a positive integer number as input and outputs all prime numbers that the input is divisible by.
+ 
+Example: for input 350, the output is: 2, 5, 7.
+ 
+You need to test that the program works correctly. Write what test cases you will need to execute to verify that.
+
+Ответ 1 
+
+Расчитываем сами или где то берём готовый список простых чисел (включая 1), делаем из этого списка массив константу
+Пишем тест который берёт случайное число индексов из этого массива (от 1 до 5) и перемножает элементы.
+Вычисленным значением отдаём субъекту тестирования и сравниваем исходные множители (единицы отбрасываем) и вывод программы.
+Тест прогоняем 5 раз.
+Пишем другой тест: запускаем программу со случайными числами и смотрим что бы переданныое число делилось на все множители которые программа вернёт и в конечном счёте после всех делений должна получиться 1.
+Тест прогоняем 5 раз (автоматически в цикле)
+
+
+Question 2
+ 
+The database has two tables:
+ 
+Table 1: department
+ 
+id INT PRIMARY KEY
+name VARCHAR(50)
+ 
+Table 2: employee
+ 
+id INT PRIMARY KEY
+department_id INT
+manager_id INT(11)
+name VARCHAR(50)
+income DECIMAL
+ 
+Write a query that outputs all employees that do not have a manager, who works in the same department.
+
+Ответ 2
+
+Не понял часть про "who works in the same department" - "которые работают в одном отделе", в одном отделе с кем ? 
+Имеется в виду что в отделе где менеджер есть, то как определить что в отделе есть менеджер ? 
+Или имелось в виду что вывести сотрудников без менеджера если в отделе более одного сотрудника ? 
+
+И самый убийственный вопрос как понять что у сотрудника нет начальника ? manager_id имеет значение NULL ? 
+или равно 0 и менеджер с идентификатором 0 имеет имя "Менеджер не назначен" ?
+Будем исходить из того что условие отсутствия назначеного менеджера вычисляется выражением : manager_id IS NULL.
+
+Работники у которых нет начальника
+SELECT
+    id AS employee_id,
+    name AS employee_name
+FROM
+    employee
+WHERE
+    manager_id IS NULL
+;
+
+С дополнительным требованием "who works in the same department", оба варината какие то монструозные или разбивать надо на два запроса.
+Исходя из того что вопрос про основы SQL, не думаю что монструозность требуется.
