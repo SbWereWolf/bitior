@@ -11,14 +11,12 @@ namespace Palindrome
 
             var chars = new char[0];
             var isValid = !string.IsNullOrWhiteSpace(input);
+
+            var isProper = false;
             if (isValid)
             {
                 // ReSharper disable once PossibleNullReferenceException
                 chars = input.ToCharArray();
-            }
-            var isProper = false;
-            if (isValid)
-            {
                 isProper = IsPalindrome(chars);
             }
             var candidate = string.Empty;

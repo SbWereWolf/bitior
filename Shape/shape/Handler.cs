@@ -29,7 +29,7 @@ namespace Shape
             if (isSuccess)
             {
                 type = command[0]?.ToLowerInvariant();
-                isSuccess = type != circle || type != rectangle;
+                isSuccess = type == circle || type == rectangle;
             }
             Shape shape = null;
             if (isSuccess)
